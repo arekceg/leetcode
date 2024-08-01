@@ -1,44 +1,45 @@
 package stacks.validparentheses;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
-import static java.util.Map.entry;
-
 public class ValidParan {
+    private static final Map<Character, Character> closedToOpenBracketMap =
+            Map.of(
+                    ')', '(',
+                    '}', '{',
+                    ']', '['
+            );
+
+    private static final Set<Character> closingBrackets = closedToOpenBracketMap.keySet();
+    private static final Collection<Character> openingBrackets = closedToOpenBracketMap.values();
+
     public static boolean isValid(String s) {
-        if (s.length() % 2 != 0) {
+        if (isClosingBracket(s.charAt(0)) || isOpeningBracket(s.charAt(s.length() - 1))) {
             return false;
         }
-        final var pairsMap = Map.ofEntries(
-                entry('(', ')'),
-                entry('{', '}'),
-                entry('[', ']'));
-        final var chars = s.toCharArray();
-        final var stringStartsWithClosingP = pairsMap.get(chars[0]) == null;
-        final var stringEndsWithOpeningP = pairsMap.get(chars[chars.length - 1]) != null;
-        if (stringStartsWithClosingP || stringEndsWithOpeningP) {
-            return false;
-        }
-        final var openParenthesisStack = new Stack<Character>();
-        for (char parenthesis : chars) {
-            final var matchingClosingParenthesis = pairsMap.get(parenthesis);
-            final var currentParenthesisIsOpen = matchingClosingParenthesis != null;
-            if (currentParenthesisIsOpen) {
-                openParenthesisStack.push(parenthesis);
-            } else {
-                if (openParenthesisStack.isEmpty()){
+        var bracketValidator = new Stack<Character>();
+        for (char bracket : s.toCharArray()) {
+            if (isClosingBracket(bracket)) {
+                if (!bracketValidator.isEmpty() && !bracketValidator.peek().equals(closedToOpenBracketMap.get(bracket))) {
                     return false;
-                }
-                final var closedParenthesisMatchesTheLastOpenOne = pairsMap.get(openParenthesisStack.peek()).equals(parenthesis);
-                if (closedParenthesisMatchesTheLastOpenOne) {
-                    openParenthesisStack.pop();
-                } else {
-                    return false;
+                } else if (!bracketValidator.isEmpty()) {
+                    bracketValidator.pop();
+                    continue;
                 }
             }
+            bracketValidator.push(bracket);
         }
-        return openParenthesisStack.isEmpty();
+        return bracketValidator.isEmpty();
     }
 
+    private static boolean isOpeningBracket(Character c) {
+        return openingBrackets.contains(c);
+    }
+
+    private static boolean isClosingBracket(Character c) {
+        return closingBrackets.contains(c);
+    }
 }
