@@ -1,41 +1,32 @@
 package strings.romantoint;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RomanToIntTest {
 
-    @Test
-    void test() {
-        // given
-        testConverter("III", 3);
-        testConverter("LVIII", 58);
-        testConverter("MCMXCIV", 1994);
-        testConverter("MCCXCIV", 1294);
-        fast("MCMXCIV", 1994);
-
-        // when
-
-        // then
-
-    }
-
-
-    public void testConverter(String roman, int expectedResult){
-        final var actualInt = RomanToInt.romanToIntBackwards(roman);
+    @ParameterizedTest
+    @MethodSource("romanToIntProvider")
+    void test(String roman, int expectedResult) {
+        final var actualInt = RomanToInt.romanToInt(roman);
         System.out.println("ROMAN : " + roman);
         System.out.println("EXPECTED INT : " + expectedResult);
         System.out.println("ACTUAL INT : " + actualInt);
         assertEquals(expectedResult, actualInt);
     }
 
-    public void fast(String roman, int expectedResult){
-        final var actualInt = RomanToInt.romanToIntBackwards(roman);
-        System.out.println("ROMAN : " + roman);
-        System.out.println("EXPECTED INT : " + expectedResult);
-        System.out.println("ACTUAL INT : " + actualInt);
-        assertEquals(expectedResult, actualInt);
+    private static Stream<Arguments> romanToIntProvider() {
+        return Stream.of(
+                Arguments.of("III", 3),
+                Arguments.of("LVIII", 58),
+                Arguments.of("MCMXCIV", 1994),
+                Arguments.of("MCCXCIV", 1294),
+                Arguments.of("IV", 4)
+        );
     }
-
 }

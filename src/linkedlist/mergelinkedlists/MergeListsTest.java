@@ -1,4 +1,4 @@
-package linkedlist.fail_mergelinkedlists;
+package linkedlist.mergelinkedlists;
 
 import linkedlist.ListNode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Stream.of;
 import static linkedlist.TestLists.listToString;
 import static linkedlist.TestLists.listStartingAt;
-import static linkedlist.fail_mergelinkedlists.MergeLists.mergeTwoLists;
+import static linkedlist.mergelinkedlists.MergeLists.mergeTwoLists;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 

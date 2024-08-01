@@ -23,12 +23,12 @@ class InvertBinaryTreeTest {
     @MethodSource(value = "dataProvider")
     void binaryTreeInversionTest(TreeNode root) {
         // given
-        InvertBinaryTree.invertTree(root);
-
+        final var invertedTree = InvertBinaryTree.invertTree(root);
 
         // when
 
         // then
+        System.out.println(invertedTree);
     }
 
 }

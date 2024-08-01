@@ -1,0 +1,58 @@
+package arrays.search2dmatrix2;
+
+import arrays.search2dmatrix.Search2DMatrix;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+import static java.util.stream.Stream.of;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+
+class Search2DMatrix2Test {
+
+    public static Stream<Arguments> dataProvider() {
+        return of(
+                arguments(new int[][]{
+                                {1, 3, 5, 7},
+                                {5, 6, 7, 8},
+                                {23, 30, 34, 60},},
+                        6,
+                        true
+                ),
+                arguments(new int[][]{
+                                {1, 3, 5, 7},
+                                {8, 18, 19, 25},
+                                {10, 11, 16, 200},
+                                {23, 30, 34, 60},},
+                        13,
+                        false
+                ),
+                arguments(new int[][]{
+                                {1, 3, 5, 7},
+                                {2, 11, 18, 20},
+                                {23, 30, 34, 60},},
+                        13,
+                        false
+                ),
+                arguments(new int[][]{
+                                {1, 3}},
+                        3,
+                        true
+                )
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource(value = "dataProvider")
+    void search2DMatrixTest(int[][] matrix, int target, boolean expectedResult) {
+        // given
+        assertEquals(expectedResult, Search2DMatrix2.searchMatrix(matrix, target));
+
+        // when
+
+        // then
+    }
+}

@@ -1,32 +1,26 @@
 package arrays.twosum;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static utils.Utils.printArray;
 
 class TwoSumTest {
 
-    @Test
-    void test() {
-        // given
-
-        final var nums = new int[]{2,20, 10, 7, 11, 15};
-        final var expected = new int[]{3,4};
-        testArrays(nums, 18, expected);
-
+    @ParameterizedTest
+    @MethodSource("testData")
+    void testTwoSum(int[] nums, int target, int[] expected) {
+        assertArrayEquals(expected, TwoSum.twoSum(nums, target));
     }
 
-    void testArrays(int[] numbers, int sum, int[] expectedResult){
-        // when
-        final var actua = TwoSum.twoSum(numbers,  sum);
-
-        // then
-        printArray(expectedResult);
-        System.out.println("\n==================");
-        printArray(actua);
-        assertArrayEquals(expectedResult, actua);
-
+    static Stream<Arguments> testData() {
+        return Stream.of(
+                Arguments.of(new int[]{2, 7, 11, 15}, 9, new int[]{0, 1}),
+                Arguments.of(new int[]{3, 2, 4}, 6, new int[]{1, 2}),
+                Arguments.of(new int[]{3, 3}, 6, new int[]{0, 1})
+        );
     }
-
 }

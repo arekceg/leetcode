@@ -13,7 +13,11 @@ class LongestCommonPrefixTest {
     public static Stream<Arguments> dataProvider() {
         return Stream.of(
                 Arguments.arguments(new String[]{"flower","flow","flight"}, "fl"),
-                Arguments.arguments(new String[]{"dog","racecar","car"}, "")
+                Arguments.arguments(new String[]{"flower","flower","flower"}, "flower"),
+                Arguments.arguments(new String[]{"dog","racecar","car"}, ""),
+                Arguments.arguments(new String[]{"a"}, "a"),
+                Arguments.arguments(new String[]{}, ""),
+                Arguments.arguments(new String[]{""}, "")
         );
     }
 

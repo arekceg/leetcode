@@ -10,10 +10,10 @@ public class ValidPalindromeTwoPointers {
         int rightPointer = s.length() - 1;
         final var chars = s.toCharArray();
         while (leftPointer < rightPointer) {
-            while (!isAlphanumeric(chars[leftPointer]) && leftPointer < rightPointer) {
+            while (isNotAlphanumeric(chars[leftPointer]) && leftPointer < rightPointer) {
                 leftPointer++;
             }
-            while (!isAlphanumeric(chars[rightPointer]) && rightPointer > leftPointer) {
+            while (isNotAlphanumeric(chars[rightPointer]) && rightPointer > leftPointer) {
                 rightPointer--;
             }
             if (toLowerCase(chars[leftPointer]) != toLowerCase(chars[rightPointer])) {
@@ -25,7 +25,7 @@ public class ValidPalindromeTwoPointers {
         return true;
     }
 
-    private static boolean isAlphanumeric(char c) {
-        return isAlphabetic(c) || isDigit(c);
+    private static boolean isNotAlphanumeric(char c) {
+        return !isAlphabetic(c) && !isDigit(c);
     }
 }

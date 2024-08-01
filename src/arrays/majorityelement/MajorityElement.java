@@ -1,20 +1,19 @@
 package arrays.majorityelement;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class MajorityElement {
     public static int majorityElement(int[] nums) {
-        Map<Integer, Integer> intToCountMap = new TreeMap<>();
-        final var majorityThreshold = nums.length / 2;
+        var majorityThreshold = nums.length / 2;
+        Map<Integer, Integer> numCountMap = new HashMap<>();
         for (int num : nums) {
-            intToCountMap.put(num, intToCountMap.getOrDefault(num, 0) + 1);
-        }
-        for (Map.Entry<Integer, Integer> entry : intToCountMap.entrySet()) {
-            if (entry.getValue() > majorityThreshold) {
-                return entry.getKey();
+            var currentNumCount = numCountMap.getOrDefault(num, 0);
+            if (currentNumCount >= majorityThreshold){
+                return num;
             }
+            numCountMap.put(num, ++currentNumCount);
         }
-        throw new IllegalArgumentException("No majority found");
+        return 0;
     }
 }

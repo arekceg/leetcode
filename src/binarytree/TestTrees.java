@@ -30,7 +30,7 @@ public class TestTrees {
         TreeNode treeNode9 = new TreeNode(9, null, null);
         return new TreeNode(3, treeNode9, treeNode20);
     }
-    public static TreeNode leftImbalancedTreeDepth3() {
+    public static TreeNode rightImbalancedTreeDepth3() {
         TreeNode treeNode1= new TreeNode(1, null, null);
         TreeNode treeNode2= new TreeNode(2, null, null);
         final var treeNode7 = new TreeNode(7, treeNode1, treeNode2);

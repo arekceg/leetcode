@@ -17,6 +17,8 @@ class MaxSubArrayTest {
         return Stream.of(
                 arguments(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}, 6),
                 arguments(new int[]{1}, 1),
+                arguments(new int[]{}, 0),
+                arguments(new int[]{-1, -5, -3}, -1),
                 arguments(new int[]{5, 4, -1, 7, 8}, 23)
         );
     }

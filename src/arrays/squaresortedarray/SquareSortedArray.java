@@ -2,19 +2,25 @@ package arrays.squaresortedarray;
 
 public class SquareSortedArray {
     public static int[] sortedSquares(int[] nums) {
-        int leftIndex = 0, rightIndex = nums.length - 1;
-        final var resultArray = new int[nums.length];
-        for (int i = resultArray.length - 1; i >= 0; i--) {
-            final var leftSquare = nums[leftIndex] * nums[leftIndex];
-            final var rightSquare = nums[rightIndex] * nums[rightIndex];
-            if (rightSquare >= leftSquare ){
-                resultArray[i] = rightSquare;
-                rightIndex--;
+        var left = 0;
+        var right = nums.length - 1;
+        var squaredArray = new int[nums.length];
+        var insertionIndex = squaredArray.length - 1;
+        while (insertionIndex >= 0) {
+            var leftSquare = squareInt(nums[left]);
+            var rightSquare = squareInt(nums[right]);
+            if (leftSquare > rightSquare) {
+                squaredArray[insertionIndex--] = leftSquare;
+                left++;
             } else {
-                resultArray[i] = leftSquare;
-                leftIndex++;
+                squaredArray[insertionIndex--] = rightSquare;
+                right--;
             }
         }
-        return resultArray;
+        return squaredArray;
+    }
+
+    private static int squareInt(int num) {
+        return num * num;
     }
 }

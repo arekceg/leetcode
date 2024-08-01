@@ -3,9 +3,11 @@ package binarytree.diameter;
 import binarytree.TreeNode;
 
 public class Diameter {
+
     private static int maxDiameter = 0;
 
     public static int diameterOfBinaryTree(TreeNode root) {
+        maxDiameter = 0;
         dfs(root);
         return maxDiameter;
     }
@@ -16,8 +18,8 @@ public class Diameter {
         }
         int leftHeight = dfs(root.left);
         int rightHeight = dfs(root.right);
-        int current = leftHeight + rightHeight + 2;
-        maxDiameter = Math.max(maxDiameter, current);
+        int currentDiameter = leftHeight + rightHeight + 2;
+        maxDiameter = Math.max(maxDiameter, currentDiameter);
 
         return Math.max(leftHeight, rightHeight) + 1;
     }

@@ -22,11 +22,11 @@ class InvertBinaryTree {
         if (root == null) {
             return null;
         }
-        invertTree(root.left);
         invertTree(root.right);
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
+        invertTree(root.left);
+        final var temp = root.right;
+        root.right = root.left;
+        root.left = temp;
         return root;
     }
 

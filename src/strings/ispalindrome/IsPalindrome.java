@@ -1,18 +1,15 @@
 package strings.ispalindrome;
 
-// https://leetcode.com/problems/palindrome-number/description/
 public class IsPalindrome {
     public static boolean isPalindrome(int x) {
-        int lastDigit;
-        long reverse = 0L;
         int temp = x;
-        while (temp > 0) {
-            lastDigit = temp % 10;
-            reverse = reverse * 10 + lastDigit;
+        int reverse = 0;
+        while (temp != 0){
+            final var modulo = temp % 10;
+            reverse = reverse * 10 + modulo;
             temp /= 10;
         }
 
-        return reverse == (long) x;
+        return reverse == x;
     }
 }
-

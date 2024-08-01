@@ -2,19 +2,14 @@ package arrays.buysellstock;
 
 public class BuySellStockSolution {
     public static int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
-        int currentMin = Integer.MAX_VALUE;
 
-        for (int currentPrice : prices) {
-            if (currentPrice < currentMin) {
-                currentMin = currentPrice;
-            } else {
-                final var currentProfit = currentPrice - currentMin;
-                if (currentProfit > maxProfit) {
-                    maxProfit = currentProfit;
-                }
-            }
+        for (int price : prices) {
+            minPrice = Math.min(minPrice, price);
+            maxProfit = Math.max(maxProfit, price - minPrice);
         }
+
         return maxProfit;
     }
 }

@@ -20,7 +20,8 @@ class MoveZeroesTest {
                 arguments(new int[]{1, 2, 3}, new int[]{1, 2, 3}),
                 arguments(new int[]{0,0}, new int[]{0,0}),
                 arguments(new int[]{1,0,0}, new int[]{1,0,0}),
-                arguments(new int[]{1,0,1}, new int[]{1,1,0})
+                arguments(new int[]{1,0,1}, new int[]{1,1,0}),
+                arguments(new int[]{0,1}, new int[]{1,0})
         );
     }
 

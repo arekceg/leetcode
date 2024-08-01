@@ -1,4 +1,4 @@
-package strings.validparentheses;
+package stacks.validparentheses;
 
 import java.util.Map;
 import java.util.Stack;

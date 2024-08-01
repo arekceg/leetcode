@@ -18,7 +18,7 @@ class BalanceTest {
     public static Stream<Arguments> dataProvider() {
         return of(
                 arguments(TestTrees.balancedTree(), true),
-                arguments(TestTrees.leftImbalancedTreeDepth3(), false),
+                arguments(TestTrees.rightImbalancedTreeDepth3(), false),
                 arguments(null, true),
                 arguments(new TreeNode(1, null, null), true)
         );
