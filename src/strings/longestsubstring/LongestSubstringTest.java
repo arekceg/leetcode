@@ -17,6 +17,9 @@ class LongestSubstringTest {
                 arguments("abcbdbabc", 3),
                 arguments("abcabcbb", 3),
                 arguments("bbbb", 1),
+                arguments("b", 1),
+                arguments(" ", 1),
+                arguments("", 0),
                 arguments("pwwkew", 3)
         );
     }

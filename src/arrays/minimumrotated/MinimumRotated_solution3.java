@@ -1,6 +1,6 @@
 package arrays.minimumrotated;
 
-public class MinimumRotated {
+public class MinimumRotated_solution3 {
     public static int findMin(int[] nums) {
         int low = 0;
         int high = nums.length - 1;

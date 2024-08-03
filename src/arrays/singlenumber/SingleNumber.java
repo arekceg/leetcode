@@ -1,11 +1,15 @@
 package arrays.singlenumber;
 
+import java.util.HashSet;
+
 public class SingleNumber {
     public static int singleNumber(int[] nums) {
-        var result = 0;
+        var duplicatesValidator = new HashSet<Integer>();
         for (int num : nums) {
-            result ^= num;
+            if (!duplicatesValidator.add(num)) {
+                duplicatesValidator.remove(num);
+            }
         }
-        return result;
+        return duplicatesValidator.iterator().next();
     }
 }
