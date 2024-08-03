@@ -5,11 +5,14 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import utils.Utils;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
+import static java.lang.String.format;
 import static java.util.stream.Stream.of;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static utils.Utils.printArray;
 
 class Intersection2Test {
 
@@ -32,7 +35,12 @@ class Intersection2Test {
         final var intersectedArray = Intersection2.intersect(firstArray, secondArray);
 
         // then
-        Utils.printArray(intersectedArray);
+
+        var string = Arrays.toString(firstArray);
+        var string1 = Arrays.toString(secondArray);
+        var string2 = Arrays.toString(intersectedArray);
+        System.out.printf("%s $ %s = %s, expected = %s%n", string, string1, string2, Arrays.toString(expectedIntersection));
+        assertArrayEquals(intersectedArray, expectedIntersection);
     }
 
     @ParameterizedTest
@@ -42,9 +50,9 @@ class Intersection2Test {
         // given
 
         // when
-        final var intersectedArray = Intersection2.intersectSort(firstArray, secondArray);
+//        final var intersectedArray = Intersection2.intersectSort(firstArray, secondArray);
 
         // then
-        Utils.printArray(intersectedArray);
+//        Utils.printArray(intersectedArray);
     }
 }

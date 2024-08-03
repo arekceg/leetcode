@@ -2,27 +2,35 @@ package arrays.search2dmatrix;
 
 public class Search2DMatrix {
     public static boolean searchMatrix(int[][] matrix, int target) {
-        int top = 0, bottom = matrix.length - 1;
-        // find row using binary serach
-        while (top <= bottom) {
-            int mid = (top + bottom) / 2;
-            if (matrix[mid][matrix[0].length - 1] < target) {
-                top = mid + 1;
-            } else if (matrix[mid][0] > target) {
-                bottom = mid - 1;
-            } else {
-                break;
-            }
+        int low = 0;
+        int high = matrix.length - 1;
+        if (target < matrix[0][0] || matrix[matrix.length - 1][matrix[0].length - 1] < target) {
+            return false;
         }
-        // binary search on row
-        int left = 0, right = matrix[0].length - 1;
-        int row = (top + bottom) / 2;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (matrix[row][mid] > target) {
-                right = mid - 1;
-            } else if (matrix[row][mid] < target) {
-                left = mid + 1;
+        while (low <= high) {
+            var mid = low + (high - low) / 2;
+            if (matrix[low][0] <= target && matrix[low][matrix[low].length - 1] >= target) {
+                int row = low;
+                low = 0;
+                high = matrix[low].length - 1;
+                // binary search row
+                while (low <= high) {
+                    mid = (high + low) / 2;
+                    if (matrix[row][mid] > target) {
+                        high = mid - 1;
+                    } else if (matrix[row][mid] < target) {
+                        low = mid + 1;
+                    } else {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            // binary serach columns
+            if (matrix[mid][0] > target) {
+                high = mid;
+            } else if (matrix[mid][0] < target) {
+                low = mid;
             } else {
                 return true;
             }

@@ -13,7 +13,7 @@ public class ThreeSum_solution {
         final List<List<Integer>> tripletsList = new ArrayList<>();
         sort(nums);
         int leftPointer = 0, rightPointer = nums.length - 1;
-        for (int i = 0; i < nums.length - 2; i++) {
+        for (int i = 0; i < nums.length; i++) {
             final var currentNumber = nums[i];
             if (i > 0 && currentNumber == nums[i - 1]) {
                 continue;
@@ -29,7 +29,6 @@ public class ThreeSum_solution {
                     while (leftPointer < rightPointer && nums[leftPointer] == nums[leftPointer-1]){
                         leftPointer++;
                     }
-                    rightPointer--;
                 } else if (currentSum > 0) {
                     rightPointer--;
                 } else {
