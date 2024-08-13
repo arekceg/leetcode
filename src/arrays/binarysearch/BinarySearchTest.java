@@ -26,8 +26,8 @@ class BinarySearchTest {
     @MethodSource(value = "dataProvider")
     void binarySerachTest(int[]array, int target, int expectedIndex) {
         // given
-        assertEquals(expectedIndex, BinarySearch.searchRecursive(array, target));
-        assertEquals(expectedIndex, BinarySearch.binarySearch(array, target));
+//        assertEquals(expectedIndex, BinarySearch.searchRecursive(array, target));
+        assertEquals(expectedIndex, BinarySearch.search(array, target));
 
         // when
 

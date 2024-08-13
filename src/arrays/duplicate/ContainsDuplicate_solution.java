@@ -2,11 +2,11 @@ package arrays.duplicate;
 
 import java.util.HashSet;
 
-public class ContainsDuplicate {
+public class ContainsDuplicate_solution {
     public static boolean containsDuplicate(int[] nums) {
-        var duplicateValidator = new HashSet<Integer>();
+        final var numSet = new HashSet<>();
         for (int num : nums) {
-            if (!duplicateValidator.add(num)){
+            if (!numSet.add(num)){
                 return true;
             }
         }

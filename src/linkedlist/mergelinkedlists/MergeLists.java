@@ -4,27 +4,23 @@ import linkedlist.ListNode;
 
 public class MergeLists {
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        var firstPointer = list1;
-        var secondPointer = list2;
-        final var mergedList = new ListNode();
-        var current = mergedList;
-        while (firstPointer != null && secondPointer != null) {
-            ListNode nextNode;
-            if (firstPointer.val > secondPointer.val) {
-                nextNode = secondPointer;
-                secondPointer = secondPointer.next;
+        var worker = new ListNode();
+        var merge = worker;
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                worker.next = list1;
+                list1 = list1.next;
             } else {
-                nextNode = firstPointer;
-                firstPointer = firstPointer.next;
+                worker.next = list2;
+                list2 = list2.next;
             }
-            current.next = nextNode;
-            current = current.next;
+            worker = worker.next;
         }
-        if (firstPointer == null) {
-            current.next = secondPointer;
+        if (list1 == null) {
+            worker.next = list2;
         } else {
-            current.next = firstPointer;
+            worker.next = list1;
         }
-        return mergedList.next;
+        return merge.next;
     }
 }

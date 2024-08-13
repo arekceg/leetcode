@@ -2,33 +2,41 @@ package linkedlist.palindrome;
 
 import linkedlist.ListNode;
 
+import java.rmi.server.RMIClassLoader;
+
 public class Palindrome {
     public static boolean isPalindrome(ListNode head) {
-        ListNode slowPointer = head, fastPointer = head;
-        // find the middle node
-        while (fastPointer != null && fastPointer.next != null) {
-            slowPointer = slowPointer.next;
-            fastPointer = fastPointer.next.next;
+        var mid = findMiddle(head);
+        var reversed = reverse(mid);
+        while (head != null && reversed != null){
+            if (head.val != reversed.val){
+                return false;
+            }
+            head = head.next;
+            reversed = reversed.next;
         }
+        return true;
+    }
 
-        // reverse the second half of the list
-        var current = slowPointer;
-        ListNode reversed = null;
-        while (current != null) {
+    private static ListNode findMiddle(ListNode head) {
+        var slow = head;
+        var fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    private static ListNode reverse(ListNode head){
+        ListNode reversed = null, current = head;
+        while (current != null){
             var temp = current.next;
             current.next = reversed;
             reversed = current;
             current = temp;
         }
+        return reversed;
 
-        // check for palindrome
-        while (reversed != null && head != null){
-            if (reversed.val != head.val){
-                return false;
-            }
-            reversed = reversed.next;
-            head = head.next;
-        }
-        return true;
     }
 }

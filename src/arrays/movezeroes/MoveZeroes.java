@@ -2,21 +2,20 @@ package arrays.movezeroes;
 
 public class MoveZeroes {
     public static void moveZeroes(int[] nums) {
-        int left = 0, right = 0;
-        while (right < nums.length - 1) {
-            while (right < nums.length - 1 && nums[right] == 0) {
-                right++;
+        int l = 0;
+        int r = 1;
+        while (r < nums.length) {
+            if (nums[l] != 0) {
+                l++;
+                r++;
+                // swap
+            } else if (nums[r] == 0) {
+                r++;
+            } else {
+                int temp = nums[r];
+                nums[r] = nums[l];
+                nums[l] = temp;
             }
-            while (nums[left] != 0 && left < right) {
-                left++;
-            }
-            if (left == right) {
-                right++;
-                continue;
-            }
-            int temp = nums[right];
-            nums[right] = nums[left];
-            nums[left] = temp;
         }
     }
 }

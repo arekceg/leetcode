@@ -27,7 +27,7 @@ class ReverseTest {
     @MethodSource(value = "dataProvider")
     void reverseLinkedListTest(ListNode sourceList, ListNode expectedReversedList) {
       // given
-        assertEquals(expectedReversedList, Reverse.reverseList(sourceList));
+        assertEquals(expectedReversedList, Reverse_solution.reverseList(sourceList));
 
 
       // when
