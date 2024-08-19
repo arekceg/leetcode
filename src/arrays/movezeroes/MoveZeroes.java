@@ -1,20 +1,21 @@
 package arrays.movezeroes;
 
-public class MoveZeroes {
+class MoveZeroes {
     public static void moveZeroes(int[] nums) {
         int l = 0;
-        int r = 1;
-        while (r < nums.length) {
+        int r = 0;
+        while (r <= nums.length - 1 && l <= r) {
             if (nums[l] != 0) {
                 l++;
                 r++;
-                // swap
             } else if (nums[r] == 0) {
                 r++;
             } else {
-                int temp = nums[r];
+                var temp = nums[r];
                 nums[r] = nums[l];
                 nums[l] = temp;
+                l++;
+                r++;
             }
         }
     }

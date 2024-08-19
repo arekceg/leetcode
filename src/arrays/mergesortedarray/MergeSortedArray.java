@@ -1,26 +1,15 @@
 package arrays.mergesortedarray;
 
-public class MergeSortedArray {
+class MergeSortedArray {
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
-        for (int i = nums1.length - 1; i >= 0; i--) {
-            if (m == 0){
-                nums1[i] = nums2[n-1];
-                n--;
-                continue;
-            }
-            if (n == 0){
-                nums1[i] = nums1[m-1];
-                m--;
-                continue;
-            }
-            var firstArrayInt = nums1[m - 1];
-            var secondArrayInt = nums2[n - 1];
-            if (firstArrayInt > secondArrayInt){
-                nums1[i] = firstArrayInt;
-                m--;
+        int insertionIndex = nums1.length - 1;
+        int mIndex = m - 1;
+        int nIndex = n - 1;
+        while (nIndex >= 0) {
+            if (mIndex >= 0 && nums1[mIndex] >= nums2[nIndex]) {
+                nums1[insertionIndex--] = nums1[mIndex--];
             } else {
-                nums1[i] = secondArrayInt;
-                n--;
+                nums1[insertionIndex--] = nums2[nIndex--];
             }
         }
     }

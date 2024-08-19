@@ -2,16 +2,20 @@ package arrays.minimumrotated;
 
 public class MinimumRotated {
     public static int findMin(int[] nums) {
-        int low = 0;
-        int high = nums.length - 1;
-        while (high - low > 1) {
-            int mid = low + (high - low) / 2;
-            if (nums[low] > nums[high] && nums[mid] > nums[low]) {
-                low = mid;
+        int l = 0;
+        int r = nums.length - 1;
+        while (l <= r) {
+            int mid = (r - l) / 2 + l;
+            if (
+                    nums[mid] < nums[r]
+            ) {
+                // min is on the left
+                r = mid;
             } else {
-                high = mid;
+                // min is on the right
+                l = mid + 1;
             }
         }
-        return Math.min(nums[high], nums[low]);
+        return nums[l];
     }
 }

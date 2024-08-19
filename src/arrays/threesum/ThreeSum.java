@@ -4,55 +4,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ThreeSum {
+class ThreeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
-        var sums = new ArrayList<List<Integer>>();
+        var result = new ArrayList<List<Integer>>();
         for (int i = 0; i < nums.length; i++) {
-            final var currentNumber = nums[i];
-            if (i > 0 && currentNumber == nums[i - 1]) {
+            int r = nums.length - 1;
+            if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            int left = i + 1;
-            int right = nums.length - 1;
-            while (left < right) {
-                var currentSum = nums[left] + nums[right] + currentNumber;
+            int j = i + 1;
+            while (j < r) {
+                var currentSum = nums[i] + nums[j] + nums[r];
                 if (currentSum == 0) {
-                    sums.add(new ArrayList<>(List.of(currentNumber, nums[left], nums[right])));
-                    left++;
-                    while (nums[left] == nums[left - 1] && left < right) {
-                        left++;
+                    result.add(List.of(nums[i], nums[j], nums[r]));
+                    j++;
+                    while (nums[j] == nums[j - 1] && j < r) {
+                        j++;
                     }
                 } else if (currentSum > 0) {
-                    right--;
+                    r--;
                 } else {
-                    left++;
+                    j++;
                 }
-            }
-        }
-        return sums;
-    }
 
-    public static List<List<Integer>> twoSum(int[] nums, int currentNumber, int start) {
-        var sums = new ArrayList<List<Integer>>();
-        int left = start;
-        int right = nums.length - 1;
-        while (left < right) {
-            var currentSum = nums[left] + nums[right] + currentNumber;
-            if (currentSum == 0) {
-                sums.add(new ArrayList<>(List.of(nums[left], nums[right], currentNumber)));
-                left++;
-                while (nums[left] == nums[left - 1] && left < right) {
-                    left++;
-                }
-                right--;
-            }
-            if (currentSum > 0) {
-                right--;
-            } else {
-                left++;
             }
         }
-        return sums;
+        return result;
     }
 }

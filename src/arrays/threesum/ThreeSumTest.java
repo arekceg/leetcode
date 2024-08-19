@@ -16,11 +16,11 @@ class ThreeSumTest {
     public static Stream<Arguments> dataProvider() {
         return Stream.of(
                 Arguments.arguments(new int[]{-1, 0, 1, 2, -1, -4}, List.of(List.of(-1, -1, 2), List.of(-1, 0, 1))),
-//                Arguments.arguments(new int[]{0, 1, 1}, emptyList()),
-//                Arguments.arguments(new int[]{0, 0, 0, 0}, List.of(List.of(0, 0, 0)),
-//                Arguments.arguments(new int[]{-2,0,0,2,2}, List.of(List.of(-2, 0, 2))),
-                Arguments.arguments(new int[]{-2,0,1,1,2}, List.of(List.of(-2, 0, 2), List.of(-2, 1, 1)))
-//                Arguments.arguments(new int[]{1, 2, -2, -1}, List.of())
+                Arguments.arguments(new int[]{0, 1, 1}, emptyList()),
+                Arguments.arguments(new int[]{0, 0, 0, 0}, List.of(List.of(0, 0, 0))),
+                Arguments.arguments(new int[]{-2,0,0,2,2}, List.of(List.of(-2, 0, 2))),
+                Arguments.arguments(new int[]{-2,0,1,1,2}, List.of(List.of(-2, 0, 2), List.of(-2, 1, 1))),
+                Arguments.arguments(new int[]{1, 2, -2, -1}, List.of())
         );
     }
 
